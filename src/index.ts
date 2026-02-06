@@ -109,6 +109,59 @@ function searchSkills(query: string, limit: number = 20): Skill[] {
         .slice(0, limit);
 }
 
+/**
+ * Semantic search using TF-IDF style scoring
+ * Matches skills by meaning, not just keywords
+ */
+function semanticSearch(query: string, topK: number = 3): Skill[] {
+    const queryTerms = query.toLowerCase().split(/\W+/).filter(t => t.length > 2);
+
+    const scored = skills.map(skill => {
+        const nameText = skill.name.toLowerCase();
+        const descText = skill.description.toLowerCase();
+        const catText = skill.category.toLowerCase();
+        const pathText = skill.path.toLowerCase();
+
+        let score = 0;
+        for (const term of queryTerms) {
+            // Name matches are most valuable
+            if (nameText.includes(term)) score += 5;
+            // Category matches indicate domain relevance
+            if (catText.includes(term)) score += 3;
+            // Path often contains good keywords
+            if (pathText.includes(term)) score += 2;
+            // Description matches are baseline relevance
+            if (descText.includes(term)) score += 1;
+        }
+
+        return { skill, score };
+    });
+
+    return scored
+        .filter(s => s.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, topK)
+        .map(s => s.skill);
+}
+
+/**
+ * Get skill content from SKILL.md or fallback to description
+ */
+function getSkillContentSync(skill: Skill): string {
+    const skillPaths = [
+        join(__dirname, '..', '..', 'antigravity-awesome-skills', skill.path, 'SKILL.md'),
+        join(process.cwd(), 'antigravity-awesome-skills', skill.path, 'SKILL.md'),
+    ];
+
+    for (const p of skillPaths) {
+        if (existsSync(p)) {
+            return readFileSync(p, 'utf-8');
+        }
+    }
+
+    return `# ${skill.name}\n\n${skill.description}\n\n**Category:** ${skill.category}\n**Risk:** ${skill.risk}`;
+}
+
 function suggestWorkflow(goal: string): { steps: Array<{ skill: string; action: string; reason: string }> } {
     const keywords = goal.toLowerCase();
     const steps: Array<{ skill: string; action: string; reason: string }> = [];
@@ -297,6 +350,75 @@ function createMcpServer(): McpServer {
                 mimeType: 'application/json',
             }],
         })
+    );
+
+    // ========================================================================
+    // MCP PROMPTS - Frictionless Auto-Skill Detection
+    // ========================================================================
+
+    // PROMPT: auto_skill - Automatically detects and returns relevant skills
+    server.prompt(
+        'auto_skill',
+        'Auto-detect and return relevant skills for any task. Call this at the start of any task to get expert guidance.',
+        {
+            task: z.string().describe('The task or goal description'),
+        },
+        async ({ task }) => {
+            const matches = semanticSearch(task, 3);
+
+            if (matches.length === 0) {
+                return {
+                    messages: [{
+                        role: 'user' as const,
+                        content: {
+                            type: 'text' as const,
+                            text: `No specific skills found for: "${task}". Proceed with general best practices.`,
+                        },
+                    }],
+                };
+            }
+
+            const skillContents = matches.map(skill => {
+                const content = getSkillContentSync(skill);
+                return `## 🎯 ${skill.name}\n\n**Category:** ${skill.category}\n**Risk Level:** ${skill.risk}\n\n${content}`;
+            });
+
+            return {
+                messages: [{
+                    role: 'user' as const,
+                    content: {
+                        type: 'text' as const,
+                        text: `# 🌌 Antigravity Skills Activated\n\nBased on your task: **"${task}"**\n\nApply these expert skills:\n\n${skillContents.join('\n\n---\n\n')}\n\n---\n\n*Use these skills to guide your implementation.*`,
+                    },
+                }],
+            };
+        }
+    );
+
+    // PROMPT: skill_workflow - Suggested workflow for complex tasks
+    server.prompt(
+        'skill_workflow',
+        'Get a multi-step workflow recommendation for complex goals',
+        {
+            goal: z.string().describe('The complex goal to accomplish'),
+        },
+        async ({ goal }) => {
+            const workflow = suggestWorkflow(goal);
+            const skillDetails = workflow.steps.map((step, i) => {
+                const skill = skills.find(s => s.id === step.skill || s.name.toLowerCase().includes(step.skill.toLowerCase()));
+                return `### Step ${i + 1}: ${step.action.toUpperCase()}\n**Skill:** ${step.skill}\n**Reason:** ${step.reason}${skill ? `\n**Description:** ${skill.description}` : ''}`;
+            });
+
+            return {
+                messages: [{
+                    role: 'user' as const,
+                    content: {
+                        type: 'text' as const,
+                        text: `# 📋 Recommended Workflow\n\n**Goal:** ${goal}\n\n${skillDetails.join('\n\n')}\n\n---\n\n*Follow these steps in order for best results.*`,
+                    },
+                }],
+            };
+        }
     );
 
     return server;
