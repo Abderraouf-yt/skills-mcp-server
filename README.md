@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+  <a href="https://abderraouf-yt.github.io/skills-mcp-server"><img src="https://img.shields.io/badge/🔗_Live_Demo-View_Skills-violet?style=for-the-badge" alt="Demo"></a>
   <a href="https://github.com/Abderraouf-yt/skills-mcp-server/releases"><img src="https://img.shields.io/github/v/release/Abderraouf-yt/skills-mcp-server?style=for-the-badge&logo=github&logoColor=white&color=7c3aed" alt="Release"></a>
   <a href="https://github.com/Abderraouf-yt/skills-mcp-server/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License"></a>
   <a href="https://github.com/Abderraouf-yt/skills-mcp-server/stargazers"><img src="https://img.shields.io/github/stars/Abderraouf-yt/skills-mcp-server?style=for-the-badge&logo=github&color=f59e0b" alt="Stars"></a>
