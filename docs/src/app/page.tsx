@@ -202,8 +202,8 @@ export default function Home() {
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 group cursor-default">
-              <div className="relative w-10 h-10 transition-transform group-hover:scale-110 duration-500">
-                <Image src="/logo.svg" alt="Logo" width={40} height={40} className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]" />
+              <div className="relative w-10 h-10 transition-transform group-hover:scale-110 duration-500 bg-white/5 rounded-full p-1 border border-white/10">
+                <Image src="./logo.svg" alt="Logo" width={40} height={40} className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col">
                 <h1 className="text-lg font-bold tracking-tight text-foreground">
@@ -362,29 +362,28 @@ export default function Home() {
                             {/* Spotlight Gradient */}
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                            <div className="relative z-10 flex flex-col h-full">
-                              <div className="flex items-start justify-between gap-3 mb-2">
-                                <h3 className="font-semibold text-slate-200 group-hover:text-primary transition-colors line-clamp-1 text-sm leading-tight">
+                            <div className="relative z-10 flex flex-col h-full justify-between">
+                              <div>
+                                <div className="flex items-center justify-between gap-2 mb-3">
+                                  <Badge variant="outline" className={`shrink-0 text-[10px] h-5 px-1.5 border-0 bg-opacity-20 ${riskColors[skill.risk] || riskColors.unknown}`}>
+                                    {skill.risk}
+                                  </Badge>
+                                  {skill.source !== "unknown" && (
+                                    <span className="text-[9px] text-muted-foreground/40 font-mono uppercase tracking-widest">
+                                      {skill.source}
+                                    </span>
+                                  )}
+                                </div>
+                                <h3 className="font-semibold text-slate-100 group-hover:text-primary transition-colors text-sm mb-1 line-clamp-2">
                                   {skill.name}
                                 </h3>
-                                <Badge variant="outline" className={`shrink-0 text-[10px] h-5 px-1.5 border-0 ${riskColors[skill.risk] || riskColors.unknown}`}>
-                                  {skill.risk}
-                                </Badge>
                               </div>
 
-                              <p className="text-muted-foreground text-xs line-clamp-2 leading-relaxed mb-4 flex-1">
-                                {skill.description}
-                              </p>
-
-                              <div className="flex items-center gap-2 mt-auto pt-3 border-t border-white/5">
-                                <Badge variant="secondary" className="bg-secondary/50 text-muted-foreground text-[10px] h-5 hover:bg-secondary">
-                                  {categoryIcons[skill.inferredCategory] || "📁"} {skill.inferredCategory}
-                                </Badge>
-                                {skill.source !== "unknown" && (
-                                  <span className="text-[10px] text-muted-foreground/50 ml-auto font-mono">
-                                    {skill.source}
-                                  </span>
-                                )}
+                              <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/5">
+                                <div className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-primary/80 transition-colors">
+                                  <span>{categoryIcons[skill.inferredCategory] || "📁"}</span>
+                                  <span className="opacity-70 group-hover:opacity-100">{skill.inferredCategory}</span>
+                                </div>
                               </div>
                             </div>
                           </div>
