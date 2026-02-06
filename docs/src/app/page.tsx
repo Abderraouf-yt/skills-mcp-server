@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import Link from "next/link";
 import skillsData from "@/data/skills.json";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import type { Skill, SkillsData } from "@/types/skills";
+import Image from "next/image";
 
 const rawSkills = skillsData as SkillsData;
 
@@ -58,11 +58,11 @@ const skills = rawSkills.map(skill => ({
 }));
 
 const riskColors: Record<string, string> = {
-  low: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-  medium: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-  high: "bg-rose-500/20 text-rose-400 border-rose-500/30",
-  safe: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-  unknown: "bg-slate-500/20 text-slate-400 border-slate-500/30",
+  low: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+  medium: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+  high: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+  safe: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+  unknown: "bg-slate-500/10 text-slate-400 border-slate-500/20",
 };
 
 const categoryIcons: Record<string, string> = {
@@ -120,7 +120,7 @@ export default function Home() {
   const rowVirtualizer = useVirtualizer({
     count: rowCount,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 180,
+    estimateSize: () => 190, // Slightly improved height for better spacing
     overscan: 5,
   });
 
@@ -192,76 +192,100 @@ export default function Home() {
   }, [search, selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col font-sans selection:bg-primary/20">
+      {/* Background Grids */}
+      <div className="fixed inset-0 bg-grid-white/[0.02] pointer-events-none" />
+      <div className="fixed inset-0 bg-gradient-to-tr from-background via-background to-primary/5 pointer-events-none" />
+
       {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-slate-900/80 border-b border-white/5">
-        <div className="container mx-auto px-4 py-4">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/40 supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <span className="text-3xl">🌌</span>
-              <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-violet-400 to-purple-400 bg-clip-text text-transparent">
+            <div className="flex items-center gap-3 group cursor-default">
+              <div className="relative w-10 h-10 transition-transform group-hover:scale-110 duration-500">
+                <Image src="/logo.svg" alt="Logo" width={40} height={40} className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]" />
+              </div>
+              <div className="flex flex-col">
+                <h1 className="text-lg font-bold tracking-tight text-foreground">
                   Antigravity Skills
                 </h1>
-                <p className="text-xs text-slate-400">{skills.length} skills</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">{skills.length} EXPERT MODULES</p>
               </div>
             </div>
-            <div className="flex-1 max-w-md">
-              <Input
-                ref={searchRef}
-                placeholder="Search skills... (press /)"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="bg-slate-800/50 border-white/10 focus:border-violet-500/50"
-              />
+            <div className="flex-1 max-w-md hidden md:block">
+              <div className="relative group">
+                <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-500 rounded-full" />
+                <Input
+                  ref={searchRef}
+                  placeholder="Search skills... (press /)"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="bg-secondary/50 border-white/5 focus:border-primary/50 h-9 transition-all relative z-10"
+                />
+              </div>
             </div>
-            <div className="hidden md:flex items-center gap-2 text-xs text-slate-500">
-              <kbd className="px-1.5 py-0.5 bg-slate-800 rounded">↑↓</kbd> navigate
-              <kbd className="px-1.5 py-0.5 bg-slate-800 rounded">Enter</kbd> open
-              <kbd className="px-1.5 py-0.5 bg-slate-800 rounded">Esc</kbd> close
+            <div className="hidden lg:flex items-center gap-2 text-[10px] text-muted-foreground font-medium bg-secondary/30 px-3 py-1.5 rounded-full border border-white/5">
+              <span className="flex items-center gap-1"><kbd className="font-sans bg-transparent">↑↓</kbd> nav</span>
+              <span className="w-px h-3 bg-white/10" />
+              <span className="flex items-center gap-1"><kbd className="font-sans bg-transparent">↵</kbd> open</span>
             </div>
-            <Button
-              variant="outline"
-              className="border-violet-500/30 text-violet-400 hover:bg-violet-500/10"
-              onClick={() => window.open("https://github.com/Abderraouf-yt/skills-mcp-server", "_blank")}
-            >
-              ⭐ GitHub
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-muted-foreground hover:text-foreground h-9"
+                onClick={() => window.open("/playground", "_blank")}
+              >
+                🎮 Playground
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-primary/20 text-primary hover:bg-primary/10 h-9 gap-2"
+                onClick={() => window.open("https://github.com/Abderraouf-yt/skills-mcp-server", "_blank")}
+              >
+                <span>⭐</span> Star on GitHub
+              </Button>
+            </div>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-6 flex-1">
-        <div className="flex gap-6">
+      <div className="container mx-auto px-4 py-8 flex-1 relative z-10">
+        <div className="flex gap-8">
           {/* Sidebar */}
           <aside className="w-64 shrink-0 hidden lg:block">
-            <div className="sticky top-24 rounded-xl bg-slate-800/30 backdrop-blur border border-white/5 p-4">
-              <h2 className="text-sm font-semibold text-slate-300 mb-3">Categories</h2>
-              <ScrollArea className="h-[calc(100vh-200px)]">
-                <div className="space-y-1">
+            <div className="sticky top-24 space-y-6">
+              <div>
+                <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 px-2">Skill Categories</h2>
+                <div className="space-y-0.5">
                   <button
                     onClick={() => setSelectedCategory(null)}
-                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all ${!selectedCategory
-                      ? "bg-violet-500/20 text-violet-300"
-                      : "text-slate-400 hover:bg-slate-700/50"
+                    className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all font-medium ${!selectedCategory
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:bg-secondary hover:text-foreground"
                       }`}
                   >
-                    All Skills ({skills.length})
+                    All Skills <span className="float-right opacity-50 font-normal">{skills.length}</span>
                   </button>
-                  <Separator className="my-2 bg-white/5" />
+                </div>
+              </div>
+              <ScrollArea className="h-[calc(100vh-300px)] pr-3 -mr-3">
+                <div className="space-y-0.5">
                   {categories.map(([cat, count]) => (
                     <button
                       key={cat}
                       onClick={() => setSelectedCategory(cat)}
-                      className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all flex items-center justify-between ${selectedCategory === cat
-                        ? "bg-violet-500/20 text-violet-300"
-                        : "text-slate-400 hover:bg-slate-700/50"
+                      className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all flex items-center justify-between group ${selectedCategory === cat
+                        ? "bg-primary/10 text-primary font-medium"
+                        : "text-muted-foreground hover:bg-secondary hover:text-foreground"
                         }`}
                     >
-                      <span>
-                        {categoryIcons[cat] || "📁"} {cat}
+                      <span className="flex items-center gap-2">
+                        <span className="opacity-70 group-hover:opacity-100 transition-opacity">{categoryIcons[cat] || "📁"}</span>
+                        {cat}
                       </span>
-                      <span className="text-xs opacity-60">{count}</span>
+                      <span className="text-[10px] bg-secondary/50 px-1.5 py-0.5 rounded opacity-60 group-hover:opacity-100 transition-opacity">{count}</span>
                     </button>
                   ))}
                 </div>
@@ -270,26 +294,33 @@ export default function Home() {
           </aside>
 
           {/* Main Grid - Virtualized */}
-          <main className="flex-1">
-            <div className="mb-4 flex items-center justify-between">
-              <p className="text-sm text-slate-400">
-                Showing {filteredSkills.length} of {skills.length} skills
-              </p>
+          <main className="flex-1 min-w-0">
+            <div className="mb-6 flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-foreground tracking-tight">
+                {selectedCategory ? (
+                  <span className="flex items-center gap-2">
+                    {categoryIcons[selectedCategory]} {selectedCategory}
+                    <Badge variant="secondary" className="ml-2 text-xs bg-primary/10 text-primary border-transparent h-5">{filteredSkills.length}</Badge>
+                  </span>
+                ) : (
+                  <span>Explore Skills</span>
+                )}
+              </h2>
               {selectedCategory && (
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setSelectedCategory(null)}
-                  className="text-slate-400"
+                  className="text-muted-foreground hover:text-foreground h-8 text-xs"
                 >
-                  Clear filter ✕
+                  Clear filter
                 </Button>
               )}
             </div>
 
             <div
               ref={parentRef}
-              className="h-[calc(100vh-220px)] overflow-auto"
+              className="h-[calc(100vh-200px)] overflow-auto scrollbar-hide"
             >
               <div
                 style={{
@@ -313,38 +344,50 @@ export default function Home() {
                         height: `${virtualRow.size}px`,
                         transform: `translateY(${virtualRow.start}px)`,
                       }}
-                      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 px-1"
+                      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 pb-4"
                     >
                       {rowSkills.map((skill, colIndex) => {
                         const skillIndex = startIndex + colIndex;
                         const isFocused = skillIndex === focusedIndex;
 
                         return (
-                          <Card
+                          <div
                             key={skill.id}
                             onClick={() => setSelectedSkill(skill)}
-                            className={`bg-slate-800/30 backdrop-blur border-white/5 hover:border-violet-500/30 transition-all cursor-pointer group hover:shadow-lg hover:shadow-violet-500/5 ${isFocused ? "ring-2 ring-violet-500 border-violet-500" : ""
+                            className={`group relative p-4 rounded-xl border bg-card/50 backdrop-blur-sm transition-all duration-300 hover:bg-card/80 hover:-translate-y-1 cursor-pointer overflow-hidden ${isFocused
+                              ? "ring-2 ring-primary border-primary/50 shadow-[0_0_20px_rgba(139,92,246,0.15)]"
+                              : "border-white/5 hover:border-primary/30 hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.5)]"
                               }`}
                           >
-                            <CardHeader className="pb-3">
-                              <div className="flex items-start justify-between gap-2">
-                                <CardTitle className="text-base text-slate-200 group-hover:text-violet-300 transition-colors line-clamp-1">
+                            {/* Spotlight Gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            <div className="relative z-10 flex flex-col h-full">
+                              <div className="flex items-start justify-between gap-3 mb-2">
+                                <h3 className="font-semibold text-slate-200 group-hover:text-primary transition-colors line-clamp-1 text-sm leading-tight">
                                   {skill.name}
-                                </CardTitle>
-                                <Badge variant="outline" className={`shrink-0 text-xs ${riskColors[skill.risk] || riskColors.unknown}`}>
+                                </h3>
+                                <Badge variant="outline" className={`shrink-0 text-[10px] h-5 px-1.5 border-0 ${riskColors[skill.risk] || riskColors.unknown}`}>
                                   {skill.risk}
                                 </Badge>
                               </div>
-                              <CardDescription className="text-slate-400 line-clamp-2 text-sm">
+
+                              <p className="text-muted-foreground text-xs line-clamp-2 leading-relaxed mb-4 flex-1">
                                 {skill.description}
-                              </CardDescription>
-                              <div className="flex items-center gap-2 mt-2">
-                                <Badge variant="secondary" className="bg-slate-700/50 text-slate-300 text-xs">
+                              </p>
+
+                              <div className="flex items-center gap-2 mt-auto pt-3 border-t border-white/5">
+                                <Badge variant="secondary" className="bg-secondary/50 text-muted-foreground text-[10px] h-5 hover:bg-secondary">
                                   {categoryIcons[skill.inferredCategory] || "📁"} {skill.inferredCategory}
                                 </Badge>
+                                {skill.source !== "unknown" && (
+                                  <span className="text-[10px] text-muted-foreground/50 ml-auto font-mono">
+                                    {skill.source}
+                                  </span>
+                                )}
                               </div>
-                            </CardHeader>
-                          </Card>
+                            </div>
+                          </div>
                         );
                       })}
                     </div>
@@ -357,20 +400,23 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 bg-slate-900/50 py-6">
+      <footer className="border-t border-white/5 bg-background/50 py-8 mt-auto z-10">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-slate-400 text-sm">
-            Made with <span className="text-red-500">❤️</span> by{" "}
+          <div className="flex items-center justify-center gap-2 mb-4 opacity-50">
+            <Image src="/logo.svg" alt="AntiGravity" width={24} height={24} className="grayscale" />
+          </div>
+          <p className="text-muted-foreground text-sm">
+            Made with <span className="text-rose-500 animate-pulse">❤️</span> by{" "}
             <a
               href="https://github.com/Abderraouf-yt"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-violet-400 hover:text-violet-300 transition-colors"
+              className="text-primary hover:text-primary/80 transition-colors font-medium"
             >
               abderraouf-yt
             </a>
           </p>
-          <p className="text-slate-500 text-xs mt-1">
+          <p className="text-muted-foreground/50 text-xs mt-2 font-mono">
             Universal Skills for AI Agents • {new Date().getFullYear()}
           </p>
         </div>
@@ -378,53 +424,60 @@ export default function Home() {
 
       {/* Skill Detail Dialog */}
       <Dialog open={!!selectedSkill} onOpenChange={() => setSelectedSkill(null)}>
-        <DialogContent className="bg-slate-900 border-white/10 max-w-2xl">
+        <DialogContent className="bg-card/95 backdrop-blur-xl border-white/10 max-w-2xl sm:max-w-3xl p-0 gap-0 overflow-hidden shadow-2xl">
           {selectedSkill && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-xl text-slate-100 flex items-center gap-3">
-                  {categoryIcons[selectedSkill.inferredCategory] || "📁"} {selectedSkill.name}
-                </DialogTitle>
-                <DialogDescription className="text-slate-400 mt-2">
-                  {selectedSkill.description}
-                </DialogDescription>
+            <div className="flex flex-col h-[600px]">
+              <DialogHeader className="p-6 pb-2 border-b border-white/5 bg-gradient-to-r from-secondary/20 to-transparent">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-2xl border border-white/5">
+                    {categoryIcons[selectedSkill.inferredCategory] || "📁"}
+                  </div>
+                  <div>
+                    <DialogTitle className="text-xl text-foreground font-bold">
+                      {selectedSkill.name}
+                    </DialogTitle>
+                    <div className="flex items-center gap-2 mt-1">
+                      <Badge variant="outline" className={`text-[10px] px-2 h-5 border-0 ${riskColors[selectedSkill.risk] || riskColors.unknown}`}>
+                        {selectedSkill.risk} Risk
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">•</span>
+                      <span className="text-xs text-muted-foreground font-mono">{selectedSkill.source}</span>
+                    </div>
+                  </div>
+                </div>
               </DialogHeader>
-              <div className="space-y-4 mt-4">
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline" className={riskColors[selectedSkill.risk] || riskColors.unknown}>
-                    Risk: {selectedSkill.risk}
-                  </Badge>
-                  <Badge variant="secondary" className="bg-violet-600/20 text-violet-300 border-violet-500/30">
-                    {categoryIcons[selectedSkill.inferredCategory] || "📁"} {selectedSkill.inferredCategory}
-                  </Badge>
-                  {selectedSkill.source !== "unknown" && (
-                    <Badge variant="secondary" className="bg-slate-700/50 text-slate-300">
-                      {selectedSkill.source}
-                    </Badge>
-                  )}
-                </div>
-                <Separator className="bg-white/10" />
-                <div>
-                  <h4 className="text-sm font-medium text-slate-300 mb-2">Skill Path</h4>
-                  <code className="text-xs bg-slate-800 px-3 py-2 rounded block text-violet-300 overflow-x-auto">
+
+              <div className="flex-1 overflow-y-auto p-6">
+                <div className="prose prose-invert max-w-none">
+                  <h4 className="text-sm font-semibold text-foreground/80 mb-2">Description</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                    {selectedSkill.description}
+                  </p>
+
+                  <h4 className="text-sm font-semibold text-foreground/80 mb-2">File Path</h4>
+                  <div className="bg-secondary/30 rounded-lg p-3 border border-white/5 font-mono text-xs text-primary/80 break-all select-all">
                     {selectedSkill.path}
-                  </code>
-                </div>
-                <div className="flex gap-2">
-                  <Button
-                    className="flex-1 bg-violet-600 hover:bg-violet-700"
-                    onClick={() =>
-                      window.open(
-                        `https://github.com/Abderraouf-yt/antigravity-awesome-skills/tree/main/${selectedSkill.path}`,
-                        "_blank"
-                      )
-                    }
-                  >
-                    View on GitHub →
-                  </Button>
+                  </div>
                 </div>
               </div>
-            </>
+
+              <div className="p-6 border-t border-white/5 bg-secondary/10 flex items-center justify-end gap-3">
+                <Button variant="ghost" onClick={() => setSelectedSkill(null)}>
+                  Close
+                </Button>
+                <Button
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20"
+                  onClick={() =>
+                    window.open(
+                      `https://github.com/Abderraouf-yt/antigravity-awesome-skills/tree/main/${selectedSkill.path}`,
+                      "_blank"
+                    )
+                  }
+                >
+                  View Source on GitHub ↗
+                </Button>
+              </div>
+            </div>
           )}
         </DialogContent>
       </Dialog>
