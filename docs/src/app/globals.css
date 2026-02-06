@@ -135,3 +135,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Scrollbar for Dark Theme */
+:root {
+  scrollbar-color: oklch(0.25 0.1 260) oklch(0.1 0.05 260);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(0.1 0.05 260);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.25 0.1 260);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.35 0.15 260);
+}
