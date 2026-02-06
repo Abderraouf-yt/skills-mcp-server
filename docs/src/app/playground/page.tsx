@@ -55,7 +55,7 @@ export default function PlaygroundPage() {
         role: 'user',
         content: {
             type: 'text',
-            text: `# 🌌 Antigravity Skills Activated\n\nBased on your task: "${query}"\n\nApply these expert skills:\n\n${results.map(r => `## 🎯 ${r.skill.name}\n\n**Category:** ${r.skill.category}\n**Risk Level:** ${r.skill.risk || 'unknown'}\n\n${r.skill.description}\n\n*(Full technical instructions injected here...)*`).join('\n\n---\n\n')}`
+            text: `# 🚀 Skill7 - Expert Skills Activated\n\nBased on your task: "${query}"\n\nApply these expert skills:\n\n${results.map(r => `## 🎯 ${r.skill.name}\n\n**Category:** ${r.skill.category}\n**Risk Level:** ${r.skill.risk || 'unknown'}\n\n${r.skill.description}\n\n*(Full technical instructions injected here...)*`).join('\n\n---\n\n')}`
         }
     };
 
@@ -268,7 +268,7 @@ export default function PlaygroundPage() {
                                         <p className="text-green-400 font-medium text-sm">Goal Achievable</p>
                                     </div>
                                     <div className="mt-4">
-                                        <DeployButton label="Execute with Antigravity" icon={Zap} className="w-full bg-white text-black hover:bg-zinc-200 shadow-lg shadow-white/10 from-white to-zinc-100 text-black" />
+                                        <DeployButton label="Execute with Skill7" icon={Zap} className="w-full bg-white text-black hover:bg-zinc-200 shadow-lg shadow-white/10 from-white to-zinc-100 text-black" />
                                     </div>
                                 </div>
 

@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
- * @antigravity/skills-mcp-server
+ * skill7
  * 
  * Universal MCP server for 634+ AI development skills
  * Supports: stdio (local) and HTTP (remote/Docker) transports
  * 
  * Usage:
- *   Local:  node dist/index.js
- *   Docker: docker run -p 3000:3000 antigravity/skills-mcp
+ *   Local:  npx skill7
+ *   Docker: docker run -p 3000:3000 skill7
  */
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
@@ -200,8 +200,8 @@ function suggestWorkflow(goal: string): { steps: Array<{ skill: string; action: 
 
 function createMcpServer(): McpServer {
     const server = new McpServer({
-        name: 'antigravity-skills',
-        version: '1.0.0',
+        name: 'skill7',
+        version: '1.1.0',
     });
 
     // TOOL: list_skills
@@ -333,7 +333,7 @@ function createMcpServer(): McpServer {
             return {
                 content: [{
                     type: 'text',
-                    text: `Skill info:\n${JSON.stringify(skill, null, 2)}\n\nClone repo for full content: git clone https://github.com/Abderraouf-yt/antigravity-awesome-skills.git`
+                    text: `Skill info:\n${JSON.stringify(skill, null, 2)}\n\nClone repo for full content: git clone https://github.com/Abderraouf-yt/skills-mcp-server.git`
                 }]
             };
         }
@@ -388,7 +388,7 @@ function createMcpServer(): McpServer {
                     role: 'user' as const,
                     content: {
                         type: 'text' as const,
-                        text: `# 🌌 Antigravity Skills Activated\n\nBased on your task: **"${task}"**\n\nApply these expert skills:\n\n${skillContents.join('\n\n---\n\n')}\n\n---\n\n*Use these skills to guide your implementation.*`,
+                        text: `# 🚀 Skill7 - Expert Skills Activated\n\nBased on your task: **"${task}"**\n\nApply these expert skills:\n\n${skillContents.join('\n\n---\n\n')}\n\n---\n\n*Use these skills to guide your implementation.*`,
                     },
                 }],
             };
@@ -452,7 +452,7 @@ function startHttpServer(server: McpServer) {
         if (req.url === '/' && req.method === 'GET') {
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({
-                name: 'Antigravity Skills MCP Server',
+                name: 'Skill7 MCP Server',
                 version: '1.0.0',
                 skills: skills.length,
                 categories: getCategories().length,
@@ -490,7 +490,7 @@ function startHttpServer(server: McpServer) {
     });
 
     httpServer.listen(PORT, () => {
-        console.log(`🌌 Antigravity Skills MCP Server`);
+        console.log(`🚀 Skill7 MCP Server`);
         console.log(`📚 ${skills.length} skills loaded`);
         console.log(`🌐 HTTP server: http://localhost:${PORT}`);
         console.log(`   Health: http://localhost:${PORT}/health`);
@@ -505,7 +505,7 @@ function startHttpServer(server: McpServer) {
 async function startStdioServer(server: McpServer) {
     const transport = new StdioServerTransport();
     await server.connect(transport);
-    console.error('🌌 Antigravity Skills MCP Server (stdio)');
+    console.error('🚀 Skill7 MCP Server (stdio)');
     console.error(`📚 ${skills.length} skills loaded`);
 }
 

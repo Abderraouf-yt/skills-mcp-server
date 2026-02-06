@@ -14,6 +14,11 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import type { Skill, SkillsData } from "@/types/skills";
 import Image from "next/image";
+import {
+  Bot, Brain, BookOpen, Shield, Palette, Gamepad2, Cloud, Zap, Link2, BarChart3, Wrench, Package,
+  Gem, Terminal, Code, Rocket
+} from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
 const rawSkills = skillsData as SkillsData;
 
@@ -126,20 +131,87 @@ const riskColors: Record<string, string> = {
   unknown: "bg-slate-500/10 text-slate-400 border-slate-500/20",
 };
 
-const categoryIcons: Record<string, string> = {
-  "agentic-systems": "🤖",
-  "generative-ai": "🧠",
-  "knowledge-engineering": "📚",
-  "security-engineering": "🛡️",
-  "product-experience": "🎨",
-  "interactive-media": "🎮",
-  "platform-engineering": "☁️",
-  "automation-ops": "⚡",
-  "web3-core": "🔗",
-  "data-intelligence": "📊",
-  "dev-excellence": "🛠️",
-  "uncategorized": "📦",
+const categoryIcons: Record<string, LucideIcon> = {
+  "agentic-systems": Bot,
+  "generative-ai": Brain,
+  "knowledge-engineering": BookOpen,
+  "security-engineering": Shield,
+  "product-experience": Palette,
+  "interactive-media": Gamepad2,
+  "platform-engineering": Cloud,
+  "automation-ops": Zap,
+  "web3-core": Link2,
+  "data-intelligence": BarChart3,
+  "dev-excellence": Wrench,
+  "uncategorized": Package,
 };
+
+// Quick Setup IDE Configurations
+const ideConfigs: { id: string; name: string; Icon: LucideIcon; color: string; config: string; path: string }[] = [
+  {
+    id: "gemini",
+    name: "Gemini CLI",
+    Icon: Gem,
+    color: "from-blue-500 to-cyan-400",
+    config: `{
+  "mcpServers": {
+    "skill7": {
+      "command": "npx",
+      "args": ["-y", "skill7"]
+    }
+  }
+}`,
+    path: "~/.gemini/settings.json",
+  },
+  {
+    id: "claude",
+    name: "Claude Desktop",
+    Icon: Bot,
+    color: "from-orange-500 to-amber-400",
+    config: `{
+  "mcpServers": {
+    "skill7": {
+      "command": "npx",
+      "args": ["-y", "skill7"]
+    }
+  }
+}`,
+    path: "claude_desktop_config.json",
+  },
+  {
+    id: "cursor",
+    name: "Cursor IDE",
+    Icon: Terminal,
+    color: "from-purple-500 to-pink-400",
+    config: `{
+  "mcpServers": {
+    "skill7": {
+      "command": "npx",
+      "args": ["-y", "skill7"]
+    }
+  }
+}`,
+    path: ".cursor/mcp.json",
+  },
+  {
+    id: "vscode",
+    name: "VS Code",
+    Icon: Code,
+    color: "from-blue-600 to-blue-400",
+    config: `{
+  "mcp": {
+    "servers": {
+      "skill7": {
+        "type": "command",
+        "command": "npx",
+        "args": ["-y", "skill7"]
+      }
+    }
+  }
+}`,
+    path: "settings.json",
+  },
+];
 
 import Orb from "@/components/visuals/Orb";
 
@@ -149,6 +221,13 @@ export default function Home() {
   const [selectedSkill, setSelectedSkill] = useState<typeof skills[0] | null>(null);
   const [focusedIndex, setFocusedIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(24);
+  const [copiedConfig, setCopiedConfig] = useState<string | null>(null);
+
+  const copyToClipboard = async (id: string, config: string) => {
+    await navigator.clipboard.writeText(config);
+    setCopiedConfig(id);
+    setTimeout(() => setCopiedConfig(null), 2000);
+  };
 
   const searchRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -253,7 +332,7 @@ export default function Home() {
                     animationSpeed={6}
                     className="text-lg font-bold tracking-tight"
                   >
-                    Antigravity Skills
+                    Skill7
                   </GradientText>
                 </h1>
                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">{skills.length} EXPERT MODULES</p>
@@ -298,6 +377,45 @@ export default function Home() {
         </div>
       </header>
 
+      {/* Quick Setup Banner */}
+      <section className="relative z-10 border-b border-border/40 bg-gradient-to-r from-primary/5 via-transparent to-primary/5">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <Rocket className="w-6 h-6 text-primary" />
+              <div>
+                <h2 className="text-sm font-bold text-foreground">Quick Setup</h2>
+                <p className="text-xs text-muted-foreground">One-click install for your IDE</p>
+              </div>
+            </div>
+            <code className="hidden sm:block px-3 py-1.5 rounded-md bg-secondary/50 border border-white/5 text-xs font-mono text-muted-foreground">
+              npx skill7
+            </code>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {ideConfigs.map((ide) => (
+              <button
+                key={ide.id}
+                onClick={() => copyToClipboard(ide.id, ide.config)}
+                className={`group relative overflow-hidden rounded-lg border border-white/10 bg-secondary/30 hover:bg-secondary/50 transition-all duration-300 p-3 text-left`}
+              >
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-r ${ide.color} transition-opacity`} />
+                <div className="relative flex items-center gap-2">
+                  <ide.Icon className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-foreground truncate">{ide.name}</p>
+                    <p className="text-[10px] text-muted-foreground truncate">{ide.path}</p>
+                  </div>
+                  <span className={`text-xs transition-all ${copiedConfig === ide.id ? "text-emerald-400" : "text-muted-foreground opacity-0 group-hover:opacity-100"}`}>
+                    {copiedConfig === ide.id ? "✓ Copied!" : "Copy"}
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <div className="container mx-auto px-4 py-8 flex-1 relative z-10">
         <div className="flex gap-8">
           {/* Sidebar */}
@@ -329,7 +447,9 @@ export default function Home() {
                         }`}
                     >
                       <span className="flex items-center gap-2">
-                        <span className="opacity-70 group-hover:opacity-100 transition-opacity">{categoryIcons[cat] || "📁"}</span>
+                        <span className="opacity-70 group-hover:opacity-100 transition-opacity">
+                          {(() => { const IconComponent = categoryIcons[cat] || Package; return <IconComponent className="w-4 h-4" />; })()}
+                        </span>
                         {categoryLabels[cat] || cat}
                       </span>
                       <span className="text-[10px] bg-secondary/50 px-1.5 py-0.5 rounded opacity-60 group-hover:opacity-100 transition-opacity">{count}</span>
@@ -346,7 +466,8 @@ export default function Home() {
               <h2 className="text-xl font-semibold text-foreground tracking-tight">
                 {selectedCategory ? (
                   <span className="flex items-center gap-2">
-                    {categoryIcons[selectedCategory]} {categoryLabels[selectedCategory] || selectedCategory}
+                    {(() => { const IconComponent = categoryIcons[selectedCategory] || Package; return <IconComponent className="w-5 h-5" />; })()}
+                    {categoryLabels[selectedCategory] || selectedCategory}
                     <Badge variant="secondary" className="ml-2 text-xs bg-primary/10 text-primary border-transparent h-5">{filteredSkills.length}</Badge>
                   </span>
                 ) : (
@@ -385,8 +506,8 @@ export default function Home() {
                     <div className="relative z-10">
                       <div className="flex items-start justify-between gap-3 mb-3">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-lg shadow-inner ring-1 ring-white/10 group-hover:ring-primary/30 transition-all">
-                            {categoryIcons[skill.inferredCategory] || "📦"}
+                          <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shadow-inner ring-1 ring-white/10 group-hover:ring-primary/30 transition-all">
+                            {(() => { const IconComponent = categoryIcons[skill.inferredCategory] || Package; return <IconComponent className="w-4 h-4 text-muted-foreground" />; })()}
                           </div>
                           <Badge variant="outline" className={`text-[9px] h-5 px-2 font-mono uppercase tracking-wider border-0 bg-opacity-20 backdrop-blur-md ${riskColors[skill.risk] || riskColors.unknown}`}>
                             {skill.risk}
@@ -443,7 +564,7 @@ export default function Home() {
       <footer className="border-t border-white/5 bg-background/50 py-8 mt-auto z-10">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-2 mb-4 opacity-50">
-            <Image src={`${BASE_PATH}/logo.svg`} alt="AntiGravity" width={24} height={24} className="grayscale" />
+            <Image src={`${BASE_PATH}/logo.svg`} alt="Skill7" width={24} height={24} className="grayscale" />
           </div>
           <p className="text-muted-foreground text-sm">
             Made with <span className="text-rose-500 animate-pulse">❤️</span> by{" "}
@@ -469,8 +590,8 @@ export default function Home() {
             <div className="flex flex-col h-[600px]">
               <DialogHeader className="p-6 pb-2 border-b border-white/5 bg-gradient-to-r from-secondary/20 to-transparent">
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-2xl border border-white/5">
-                    {categoryIcons[selectedSkill.inferredCategory] || "📁"}
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-white/5">
+                    {(() => { const IconComponent = categoryIcons[selectedSkill.inferredCategory] || Package; return <IconComponent className="w-5 h-5 text-primary" />; })()}
                   </div>
                   <div>
                     <DialogTitle className="text-xl text-foreground font-bold">

@@ -1,19 +1,19 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/🌌-ANTIGRAVITY-7c3aed?style=for-the-badge&labelColor=1e1e2e" alt="Antigravity" height="60" />
+  <img src="https://img.shields.io/badge/🚀-SKILL7-7c3aed?style=for-the-badge&labelColor=1e1e2e" alt="Skill7" height="60" />
 </p>
 
-<h1 align="center">🌌 Antigravity Skills MCP Server</h1>
+<h1 align="center">🚀 Skill7 - Expert Skills for AI Agents</h1>
 
 <p align="center">
   <strong>634+ production-ready AI skills for any MCP-compatible client</strong>
 </p>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/skill7"><img src="https://img.shields.io/npm/v/skill7?style=for-the-badge&logo=npm&color=cb3837" alt="npm"></a>
   <a href="https://abderraouf-yt.github.io/skills-mcp-server"><img src="https://img.shields.io/badge/🔗_Live_Demo-View_Skills-violet?style=for-the-badge" alt="Demo"></a>
   <a href="https://github.com/Abderraouf-yt/skills-mcp-server/releases"><img src="https://img.shields.io/github/v/release/Abderraouf-yt/skills-mcp-server?style=for-the-badge&logo=github&logoColor=white&color=7c3aed" alt="Release"></a>
   <a href="https://github.com/Abderraouf-yt/skills-mcp-server/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License"></a>
   <a href="https://github.com/Abderraouf-yt/skills-mcp-server/stargazers"><img src="https://img.shields.io/github/stars/Abderraouf-yt/skills-mcp-server?style=for-the-badge&logo=github&color=f59e0b" alt="Stars"></a>
-  <a href="https://hub.docker.com/r/abderraoufyt/skills-mcp-server"><img src="https://img.shields.io/badge/docker-ready-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"></a>
 </p>
 
 <p align="center">
@@ -177,7 +177,7 @@ npm run dev    # Hot reload with tsx
 
 ## 📄 License
 
-MIT © [Antigravity](https://github.com/Abderraouf-yt)
+MIT © [Skill7](https://github.com/Abderraouf-yt)
 
 ---
 

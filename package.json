@@ -1,11 +1,11 @@
 {
-  "name": "@antigravity/skills-mcp-server",
+  "name": "skill7",
   "version": "1.1.0",
-  "description": "Universal MCP server for 634+ AI skills - Gemini CLI, Claude, Cursor, Copilot & more",
+  "description": "Skill7 - Universal MCP server for 634+ AI expert skills. Works with Gemini CLI, Claude, Cursor, Copilot & more.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "skills-mcp": "dist/index.js"
+    "skill7": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
@@ -19,6 +19,7 @@
     "setup:all": "node scripts/setup.js --client all"
   },
   "keywords": [
+    "skill7",
     "mcp",
     "model-context-protocol",
     "gemini-cli",
@@ -26,9 +27,10 @@
     "cursor",
     "copilot",
     "ai-skills",
-    "agentic"
+    "agentic",
+    "expert-skills"
   ],
-  "author": "Antigravity",
+  "author": "Skill7 <https://github.com/Abderraouf-yt>",
   "license": "MIT",
   "repository": {
     "type": "git",

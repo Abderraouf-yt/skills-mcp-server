@@ -5,14 +5,14 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Antigravity Skills | 634+ AI Development Skills",
-  description: "Browse and search 634+ production-ready AI development skills for security, development, infrastructure, and more.",
-  keywords: ["MCP", "AI skills", "development", "security", "infrastructure", "Gemini CLI", "Claude", "Cursor"],
+  title: "Skill7 | 634+ AI Expert Skills",
+  description: "Browse and search 634+ production-ready AI development skills for security, development, infrastructure, and more. Works with Gemini CLI, Claude, Cursor & VS Code.",
+  keywords: ["skill7", "MCP", "AI skills", "development", "security", "infrastructure", "Gemini CLI", "Claude", "Cursor"],
   icons: {
     icon: "/skills-mcp-server/favicon.svg",
   },
   openGraph: {
-    title: "Antigravity Skills",
+    title: "Skill7 - Expert Skills for AI Agents",
     description: "634+ AI development skills for any MCP-compatible client",
     type: "website",
     url: "https://abderraouf-yt.github.io/skills-mcp-server",

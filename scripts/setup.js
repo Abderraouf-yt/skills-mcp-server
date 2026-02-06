@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * One-click setup script for Antigravity Skills MCP Server
+ * One-click setup script for Skill7 MCP Server
  * 
  * Usage:
  *   node scripts/setup.js --client gemini
@@ -27,7 +27,7 @@ const configs = {
         generate: (existingConfig) => {
             const config = existingConfig || { mcpServers: {} };
             config.mcpServers = config.mcpServers || {};
-            config.mcpServers['antigravity-skills'] = {
+            config.mcpServers['skill7'] = {
                 command: 'node',
                 args: [serverPath],
             };
@@ -42,7 +42,7 @@ const configs = {
         generate: (existingConfig) => {
             const config = existingConfig || { mcpServers: {} };
             config.mcpServers = config.mcpServers || {};
-            config.mcpServers['antigravity-skills'] = {
+            config.mcpServers['skill7'] = {
                 command: 'node',
                 args: [serverPath],
             };
@@ -56,7 +56,7 @@ const configs = {
         generate: (existingConfig) => {
             const config = existingConfig || { mcpServers: {} };
             config.mcpServers = config.mcpServers || {};
-            config.mcpServers['antigravity-skills'] = {
+            config.mcpServers['skill7'] = {
                 command: 'node',
                 args: [serverPath],
             };
@@ -70,7 +70,7 @@ const configs = {
         generate: (existingConfig) => {
             const config = existingConfig || { servers: {} };
             config.servers = config.servers || {};
-            config.servers['antigravity-skills'] = {
+            config.servers['skill7'] = {
                 type: 'stdio',
                 command: 'node',
                 args: [serverPath],
@@ -85,7 +85,7 @@ const configs = {
         generate: (existingConfig) => {
             const config = existingConfig || { mcpServers: {} };
             config.mcpServers = config.mcpServers || {};
-            config.mcpServers['antigravity-skills'] = {
+            config.mcpServers['skill7'] = {
                 command: 'node',
                 args: [serverPath],
             };
@@ -99,7 +99,7 @@ const configs = {
         generate: (existingConfig) => {
             const config = existingConfig || { mcpServers: {} };
             config.mcpServers = config.mcpServers || {};
-            config.mcpServers['antigravity-skills'] = {
+            config.mcpServers['skill7'] = {
                 command: 'node',
                 args: [serverPath],
             };
@@ -154,14 +154,14 @@ function setupClient(clientName) {
 function showManualInstructions() {
     console.log(`
 ╔═══════════════════════════════════════════════════════════════════════════╗
-║           🌌 Antigravity Skills MCP Server - Manual Setup                 ║
+║           🚀 Skill7 MCP Server - Manual Setup                              ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                          ║
 ║  Add this to your MCP configuration:                                     ║
 ║                                                                          ║
 ║  {                                                                       ║
 ║    "mcpServers": {                                                       ║
-║      "antigravity-skills": {                                             ║
+║      "skill7": {                                                          ║
 ║        "command": "node",                                                ║
 ║        "args": ["${serverPath.replace(/\\/g, '\\\\')}"]                             ║
 ║      }                                                                   ║
@@ -189,7 +189,7 @@ const client = clientArg?.replace('--client=', '') || args[args.indexOf('--clien
 
 console.log(`
 ╔═══════════════════════════════════════════════════════════════════════════╗
-║              🌌 Antigravity Skills MCP Server Setup                       ║
+║              🚀 Skill7 MCP Server Setup                                    ║
 ║                     634+ Skills for AI Agents                             ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 `);
@@ -228,7 +228,7 @@ console.log(`
 ║  • suggest_workflow - Get skill-based workflow for a goal                ║
 ║  • get_skill_content - Read full SKILL.md content                        ║
 ║                                                                          ║
-║  Try: "Use antigravity-skills to search for react patterns"              ║
+║  Try: "Use skill7 to search for react patterns"                           ║
 ║                                                                          ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 `);

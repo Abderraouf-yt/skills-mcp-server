@@ -12,7 +12,7 @@ const TEST_SCENARIOS = [
     "Setup a CI/CD pipeline for a Next.js app on AWS"
 ];
 
-console.log('🧪 Starting Antigravity Skills Sandbox Simulation...');
+console.log('🧪 Starting Skill7 Sandbox Simulation...');
 console.log('Target Server:', SERVER_PATH);
 console.log('---------------------------------------------------\n');
 

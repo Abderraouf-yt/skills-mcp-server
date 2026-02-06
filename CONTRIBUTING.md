@@ -8,10 +8,10 @@
 
 ## Adding Skills
 
-Skills come from [antigravity-awesome-skills](https://github.com/Abderraouf-yt/antigravity-awesome-skills).
+Skills come from the [skill7 database](https://github.com/Abderraouf-yt/skills-mcp-server).
 
 To add new skills:
-1. Add SKILL.md to `antigravity-awesome-skills/skills/your-skill/`
+1. Add SKILL.md to `data/skills/your-skill/`
 2. Update `skills_index.json`
 3. Copy updated index to `data/skills_index.json`
 

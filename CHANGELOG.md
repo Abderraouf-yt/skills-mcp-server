@@ -11,4 +11,4 @@
 - Dual transport: stdio (local) and HTTP/SSE (cloud)
 - Docker support with multi-stage build
 - One-click setup for Gemini CLI, Claude, Cursor, VS Code, Copilot
-- 634+ skills from antigravity-awesome-skills
+- 634+ skills from skill7 skill database
