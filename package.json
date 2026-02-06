@@ -1,0 +1,49 @@
+{
+  "name": "@antigravity/skills-mcp-server",
+  "version": "1.0.0",
+  "description": "Universal MCP server for 634+ Antigravity Awesome Skills - works with Gemini CLI, Claude, Cursor, Copilot & more",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "skills-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "inspector": "npx @modelcontextprotocol/inspector node dist/index.js",
+    "setup:gemini": "node scripts/setup.js --client gemini",
+    "setup:claude": "node scripts/setup.js --client claude",
+    "setup:cursor": "node scripts/setup.js --client cursor",
+    "setup:all": "node scripts/setup.js --client all"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "gemini-cli",
+    "claude-code",
+    "cursor",
+    "ai-skills",
+    "agentic"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "tsx": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "data",
+    "scripts",
+    "README.md"
+  ]
+}
