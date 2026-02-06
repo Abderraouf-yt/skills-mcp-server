@@ -101,11 +101,11 @@ Curated, production-tested guidance:
 </td>
 <td width="50%">
 
-### 🔧 6 Powerful Tools
+### 🔧 6 Tools + 2 Prompts
 Everything you need:
 - Browse & search skills
-- Get detailed guidance
-- Suggest workflows
+- **Auto-detect relevant skills**
+- **Generate complex workflows**
 - Read full documentation
 
 </td>
@@ -124,6 +124,15 @@ Everything you need:
 | `get_categories` | View all categories | *"Show skill categories"* |
 | `suggest_workflow` | Step-by-step guidance | *"Workflow for building an API"* |
 | `get_skill_content` | Read SKILL.md | *"Read react-patterns skill"* |
+
+---
+
+## 🤖 Prompts (Auto-Detection)
+
+| Prompt | Description | Use Case |
+|--------|-------------|----------|
+| `auto_skill` | **Semantic Skill Matcher**<br>Analyzes your task and auto-loads relevant expert skills. | *Start of any new task* |
+| `skill_workflow` | **Workflow Generator**<br>Creates a multi-step plan using best-practice skills. | *Complex implementation planning* |
 
 ---
 
