@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
+import Link from "next/link";
 import skillsData from "@/data/skills.json";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
