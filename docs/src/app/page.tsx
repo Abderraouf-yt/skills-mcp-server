@@ -203,7 +203,7 @@ export default function Home() {
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 group cursor-default">
               <div className="relative w-10 h-10 transition-transform group-hover:scale-110 duration-500">
-                <Image src="/skills-mcp-server/logo.svg" alt="Logo" width={40} height={40} className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]" />
+                <Image src="/logo.svg" alt="Logo" width={40} height={40} className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]" />
               </div>
               <div className="flex flex-col">
                 <h1 className="text-lg font-bold tracking-tight text-foreground">
@@ -320,7 +320,7 @@ export default function Home() {
 
             <div
               ref={parentRef}
-              className="h-[calc(100vh-200px)] overflow-auto scrollbar-hide"
+              className="h-[calc(100vh-200px)] overflow-auto pr-2"
             >
               <div
                 style={{
@@ -374,12 +374,16 @@ export default function Home() {
                                     </span>
                                   )}
                                 </div>
-                                <h3 className="font-semibold text-slate-100 group-hover:text-primary transition-colors text-sm mb-1 line-clamp-2">
+                                <h3 className="font-semibold text-slate-100 group-hover:text-primary transition-colors text-sm mb-1.5 line-clamp-1">
                                   {skill.name}
                                 </h3>
                               </div>
 
-                              <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/5">
+                              <p className="text-muted-foreground/60 text-[11px] line-clamp-2 leading-relaxed mb-auto">
+                                {skill.description}
+                              </p>
+
+                              <div className="flex items-center gap-2 mt-3 pt-3 border-t border-white/5">
                                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-primary/80 transition-colors">
                                   <span>{categoryIcons[skill.inferredCategory] || "📁"}</span>
                                   <span className="opacity-70 group-hover:opacity-100">{skill.inferredCategory}</span>

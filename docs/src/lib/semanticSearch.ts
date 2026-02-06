@@ -23,7 +23,12 @@ export interface ScoredSkill {
 export function semanticSearch(query: string, skills: Skill[], topK: number = 3): ScoredSkill[] {
     if (!query) return [];
 
-    const queryTerms = query.toLowerCase().split(/\W+/).filter(t => t.length > 2);
+    // Split by whitespace to preserve special chars like hyphens in "thought-graph"
+    // Then clean punctuation from edges but keep internal hyphens
+    const queryTerms = query.toLowerCase()
+        .split(/\s+/)
+        .map(t => t.replace(/^[^a-z0-9]+|[^a-z0-9]+$/g, '')) // trim non-alphanumeric from ends
+        .filter(t => t.length > 2);
 
     // If no valid terms, return nothing
     if (queryTerms.length === 0) return [];
