@@ -1,8 +1,9 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/🚀-SKILL7-7c3aed?style=for-the-badge&labelColor=1e1e2e" alt="Skill7" height="60" />
+  <img src="./assets/logo.svg" alt="Skill7 Logo" width="120" height="120" />
 </p>
 
-<h1 align="center">🚀 Skill7 - Expert Skills for AI Agents</h1>
+<h1 align="center">Skill7</h1>
+<p align="center"><em>Expert Skills for AI Agents</em></p>
 
 <p align="center">
   <strong>634+ production-ready AI skills for any MCP-compatible client</strong>

@@ -1,0 +1,22 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8b5cf6" />
+<stop offset="100%" stop-color="#3b82f6" />
+</linearGradient>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+<feGaussianBlur stdDeviation="20" result="blur"/>
+<feComposite in="SourceGraphic" in2="blur" operator="over"/>
+</filter>
+</defs>
+<circle cx="256" cy="256" r="240" fill="#0f172a" stroke="url(#g1)" stroke-width="12" />
+<path d="M256 128C185.3 128 128 185.3 128 256C128 326.7 185.3 384 256 384C326.7 384 384 326.7 384 256" stroke="url(#g1)" stroke-width="24" stroke-linecap="round" stroke-dasharray="0 400" filter="url(#glow)">
+<animateTransform attributeName="transform" type="rotate" from="0 256 256" to="360 256 256" dur="20s" repeatCount="indefinite" />
+</path>
+<path d="M256 160C202.9 160 160 202.9 160 256C160 309.1 202.9 352 256 352" stroke="#6366f1" stroke-width="16" stroke-linecap="round" opacity="0.8">
+<animateTransform attributeName="transform" type="rotate" from="360 256 256" to="0 256 256" dur="15s" repeatCount="indefinite" />
+</path>
+<circle cx="256" cy="256" r="32" fill="url(#g1)">
+<animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite" />
+</circle>
+</svg>
