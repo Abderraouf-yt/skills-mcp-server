@@ -67,7 +67,7 @@
     "path": "skills/agent-evaluation",
     "category": "uncategorized",
     "name": "agent-evaluation",
-    "description": "Testing and benchmarking LLM agents including behavioral testing, capability assessment, reliability metrics, and production monitoring\u2014where even top agents achieve less than 50% on real-world benchmarks Use when: agent testing, agent evaluation, benchmark agents, agent reliability, test agent.",
+    "description": "Testing and benchmarking LLM agents including behavioral testing, capability assessment, reliability metrics, and production monitoring—where even top agents achieve less than 50% on real-world benchmarks Use when: agent testing, agent evaluation, benchmark agents, agent reliability, test agent.",
     "risk": "unknown",
     "source": "vibeship-spawner-skills (Apache 2.0)"
   },
@@ -185,15 +185,16 @@
     "category": "uncategorized",
     "name": "algorithmic-art",
     "description": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.",
-    "risk": "unknown",
-    "source": "unknown"
+    "risk": "safe",
+    "source": "anthropics/skills",
+    "trustScore": 8.5
   },
   {
     "id": "analytics-tracking",
     "path": "skills/analytics-tracking",
     "category": "uncategorized",
     "name": "analytics-tracking",
-    "description": "Design, audit, and improve analytics tracking systems that produce reliable, decision-ready data. Use when the user wants to set up, fix, or evaluate analytics tracking (GA4, GTM, product analytics, events, conversions, UTMs). This skill focuses on measurement strategy, signal quality, and validation\u2014 not just firing events.",
+    "description": "Design, audit, and improve analytics tracking systems that produce reliable, decision-ready data. Use when the user wants to set up, fix, or evaluate analytics tracking (GA4, GTM, product analytics, events, conversions, UTMs). This skill focuses on measurement strategy, signal quality, and validation— not just firing events.",
     "risk": "unknown",
     "source": "unknown"
   },
@@ -824,8 +825,9 @@
     "category": "uncategorized",
     "name": "canvas-design",
     "description": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.",
-    "risk": "unknown",
-    "source": "unknown"
+    "risk": "safe",
+    "source": "anthropics/skills",
+    "trustScore": 8.5
   },
   {
     "id": "cc-skill-continuous-learning",
@@ -1787,8 +1789,9 @@
     "category": "uncategorized",
     "name": "doc-coauthoring",
     "description": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks.",
-    "risk": "unknown",
-    "source": "unknown"
+    "risk": "safe",
+    "source": "anthropics/skills",
+    "trustScore": 8.5
   },
   {
     "id": "docker-expert",
@@ -2236,7 +2239,7 @@
     "path": "skills/form-cro",
     "category": "uncategorized",
     "name": "form-cro",
-    "description": "Optimize any form that is NOT signup or account registration \u2014 including lead capture, contact, demo request, application, survey, quote, and checkout forms. Use when the goal is to increase form completion rate, reduce friction, or improve lead quality without breaking compliance or downstream workflows.",
+    "description": "Optimize any form that is NOT signup or account registration — including lead capture, contact, demo request, application, survey, quote, and checkout forms. Use when the goal is to increase form completion rate, reduce friction, or improve lead quality without breaking compliance or downstream workflows.",
     "risk": "unknown",
     "source": "unknown"
   },
@@ -2299,7 +2302,7 @@
     "path": "skills/free-tool-strategy",
     "category": "uncategorized",
     "name": "free-tool-strategy",
-    "description": "When the user wants to plan, evaluate, or build a free tool for marketing purposes \u2014 lead generation, SEO value, or brand awareness. Also use when the user mentions \"engineering as marketing,\" \"free tool,\" \"marketing tool,\" \"calculator,\" \"generator,\" \"interactive tool,\" \"lead gen tool,\" \"build a tool for leads,\" or \"free resource.\" This skill bridges engineering and marketing \u2014 useful for founders and technical marketers.",
+    "description": "When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or brand awareness. Also use when the user mentions \"engineering as marketing,\" \"free tool,\" \"marketing tool,\" \"calculator,\" \"generator,\" \"interactive tool,\" \"lead gen tool,\" \"build a tool for leads,\" or \"free resource.\" This skill bridges engineering and marketing — useful for founders and technical marketers.",
     "risk": "unknown",
     "source": "unknown"
   },
@@ -2309,8 +2312,9 @@
     "category": "uncategorized",
     "name": "frontend-design",
     "description": "Create distinctive, production-grade frontend interfaces with intentional aesthetics, high craft, and non-generic visual identity. Use when building or styling web UIs, components, pages, dashboards, or frontend applications.",
-    "risk": "unknown",
-    "source": "unknown"
+    "risk": "safe",
+    "source": "anthropics/skills",
+    "trustScore": 8.5
   },
   {
     "id": "frontend-dev-guidelines",
@@ -3128,8 +3132,9 @@
     "category": "uncategorized",
     "name": "mcp-builder",
     "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
-    "risk": "unknown",
-    "source": "unknown"
+    "risk": "safe",
+    "source": "anthropics/skills",
+    "trustScore": 8.5
   },
   {
     "id": "memory-forensics",
@@ -3604,7 +3609,7 @@
     "path": "skills/page-cro",
     "category": "uncategorized",
     "name": "page-cro",
-    "description": "Analyze and optimize individual pages for conversion performance. Use when the user wants to improve conversion rates, diagnose why a page is underperforming, or increase the effectiveness of marketing pages (homepage, landing pages, pricing, feature pages, or blog posts). This skill focuses on diagnosis, prioritization, and testable recommendations\u2014 not blind optimization.",
+    "description": "Analyze and optimize individual pages for conversion performance. Use when the user wants to improve conversion rates, diagnose why a page is underperforming, or increase the effectiveness of marketing pages (homepage, landing pages, pricing, feature pages, or blog posts). This skill focuses on diagnosis, prioritization, and testable recommendations— not blind optimization.",
     "risk": "unknown",
     "source": "unknown"
   },
@@ -3649,7 +3654,7 @@
     "path": "skills/paywall-upgrade-cro",
     "category": "uncategorized",
     "name": "paywall-upgrade-cro",
-    "description": "When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use when the user mentions \"paywall,\" \"upgrade screen,\" \"upgrade modal,\" \"upsell,\" \"feature gate,\" \"convert free to paid,\" \"freemium conversion,\" \"trial expiration screen,\" \"limit reached screen,\" \"plan upgrade prompt,\" or \"in-app pricing.\" Distinct from public pricing pages (see page-cro) \u2014 this skill focuses on in-product upgrade moments where the user has already experienced value.",
+    "description": "When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates. Also use when the user mentions \"paywall,\" \"upgrade screen,\" \"upgrade modal,\" \"upsell,\" \"feature gate,\" \"convert free to paid,\" \"freemium conversion,\" \"trial expiration screen,\" \"limit reached screen,\" \"plan upgrade prompt,\" or \"in-app pricing.\" Distinct from public pricing pages (see page-cro) — this skill focuses on in-product upgrade moments where the user has already experienced value.",
     "risk": "unknown",
     "source": "unknown"
   },
@@ -3892,7 +3897,7 @@
     "path": "skills/programmatic-seo",
     "category": "uncategorized",
     "name": "programmatic-seo",
-    "description": "Design and evaluate programmatic SEO strategies for creating SEO-driven pages at scale using templates and structured data. Use when the user mentions programmatic SEO, pages at scale, template pages, directory pages, location pages, comparison pages, integration pages, or keyword-pattern page generation. This skill focuses on feasibility, strategy, and page system design\u2014not execution unless explicitly requested.",
+    "description": "Design and evaluate programmatic SEO strategies for creating SEO-driven pages at scale using templates and structured data. Use when the user mentions programmatic SEO, pages at scale, template pages, directory pages, location pages, comparison pages, integration pages, or keyword-pattern page generation. This skill focuses on feasibility, strategy, and page system design—not execution unless explicitly requested.",
     "risk": "unknown",
     "source": "unknown"
   },
@@ -4659,7 +4664,8 @@
     "name": "skill-creator",
     "description": "This skill should be used when the user asks to create a new skill, build a skill, make a custom skill, develop a CLI skill, or wants to extend the CLI with new capabilities. Automates the entire skill creation workflow from brainstorming to installation.",
     "risk": "safe",
-    "source": "unknown"
+    "source": "anthropics/skills",
+    "trustScore": 8.5
   },
   {
     "id": "skill-developer",
@@ -4703,8 +4709,9 @@
     "category": "uncategorized",
     "name": "slack-gif-creator",
     "description": "Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request animated GIFs for Slack like \"make me a GIF of X doing Y for Slack.\"",
-    "risk": "unknown",
-    "source": "unknown"
+    "risk": "safe",
+    "source": "anthropics/skills",
+    "trustScore": 8.5
   },
   {
     "id": "slo-implementation",
@@ -5162,8 +5169,9 @@
     "category": "uncategorized",
     "name": "theme-factory",
     "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
-    "risk": "unknown",
-    "source": "unknown"
+    "risk": "safe",
+    "source": "anthropics/skills",
+    "trustScore": 8.5
   },
   {
     "id": "threat-mitigation-mapping",
@@ -5494,7 +5502,7 @@
     "path": "skills/voice-agents",
     "category": "uncategorized",
     "name": "voice-agents",
-    "description": "Voice agents represent the frontier of AI interaction - humans speaking naturally with AI systems. The challenge isn't just speech recognition and synthesis, it's achieving natural conversation flow with sub-800ms latency while handling interruptions, background noise, and emotional nuance.  This skill covers two architectures: speech-to-speech (OpenAI Realtime API, lowest latency, most natural) and pipeline (STT\u2192LLM\u2192TTS, more control, easier to debug). Key insight: latency is the constraint. Hu",
+    "description": "Voice agents represent the frontier of AI interaction - humans speaking naturally with AI systems. The challenge isn't just speech recognition and synthesis, it's achieving natural conversation flow with sub-800ms latency while handling interruptions, background noise, and emotional nuance.  This skill covers two architectures: speech-to-speech (OpenAI Realtime API, lowest latency, most natural) and pipeline (STT→LLM→TTS, more control, easier to debug). Key insight: latency is the constraint. Hu",
     "risk": "unknown",
     "source": "vibeship-spawner-skills (Apache 2.0)"
   },
@@ -5549,8 +5557,9 @@
     "category": "uncategorized",
     "name": "web-artifacts-builder",
     "description": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.",
-    "risk": "unknown",
-    "source": "unknown"
+    "risk": "safe",
+    "source": "anthropics/skills",
+    "trustScore": 8.5
   },
   {
     "id": "web-design-guidelines",
@@ -5558,8 +5567,9 @@
     "category": "uncategorized",
     "name": "web-design-guidelines",
     "description": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site against best practices\".",
-    "risk": "unknown",
-    "source": "unknown"
+    "risk": "safe",
+    "source": "vercel-labs/agent-skills",
+    "trustScore": 9.6
   },
   {
     "id": "web-games",
@@ -5594,8 +5604,9 @@
     "category": "uncategorized",
     "name": "webapp-testing",
     "description": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.",
-    "risk": "unknown",
-    "source": "unknown"
+    "risk": "safe",
+    "source": "anthropics/skills",
+    "trustScore": 8.5
   },
   {
     "id": "windows-privilege-escalation",
